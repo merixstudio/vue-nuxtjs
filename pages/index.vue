@@ -34,7 +34,7 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn nuxt=true :to="`/list/${search}`" color="warning">Search</v-btn>
+              <v-btn nuxt :to="`/list/${search}`" color="warning">Search</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
