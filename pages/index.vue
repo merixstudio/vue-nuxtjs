@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-content :style="{backgroundImage: `url(${require('~/static/header_bg.jpg')})`, backgroundSize: 'cover'}">
     <v-container
       class="fill-height"
       fluid
@@ -15,7 +15,7 @@
         >
           <v-card class="elevation-12">
             <v-toolbar
-              color="warning"
+              color="orange"
               dark
               flat
             >
@@ -34,7 +34,7 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn nuxt :to="`/list/${search}`" color="warning">Search</v-btn>
+              <v-btn nuxt :to="`/list/${search}`" color="orange">Search</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
