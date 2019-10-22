@@ -20,21 +20,23 @@
               flat
             >
               <v-toolbar-title>Find beer for Your meal!</v-toolbar-title>
-              <v-spacer></v-spacer>
+              <v-spacer />
             </v-toolbar>
             <v-card-text>
               <v-form>
                 <v-text-field
+                  v-model="search"
                   label="Search | eg. chicken, pasta..."
                   name="search"
                   type="text"
-                  v-model="search"
-                ></v-text-field>
+                />
               </v-form>
             </v-card-text>
             <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn nuxt :to="`/list/${search}`" color="orange">Search</v-btn>
+              <v-spacer />
+              <v-btn nuxt :to="`/list/${search}`" color="orange">
+                Search
+              </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>

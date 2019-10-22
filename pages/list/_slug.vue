@@ -25,7 +25,15 @@
             <v-card-subtitle>{{ item.tagline }}</v-card-subtitle>
             <v-card-text>{{ item.description.length > 100 ? `${item.description.substring(0, 97)}...` : item.description }}</v-card-text>
             <v-card-actions>
-              <v-btn next :to="`/details/${item.id}`" text small color="orange">See details</v-btn>
+              <v-btn
+                next
+                :to="`/details/${item.id}`"
+                text
+                small
+                color="orange"
+              >
+                See details
+              </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
