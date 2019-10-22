@@ -23,14 +23,13 @@
               <v-spacer />
             </v-toolbar>
             <v-card-text>
-              <v-form>
                 <v-text-field
                   v-model="search"
                   label="Search | eg. chicken, pasta..."
                   name="search"
                   type="text"
+                  color="orange"
                 />
-              </v-form>
             </v-card-text>
             <v-card-actions>
               <v-spacer />

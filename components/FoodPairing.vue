@@ -14,7 +14,7 @@
         v-for="item in food"
         :key="item"
       >
-        <v-icon v-text="'mdi-square-small'"></v-icon>
+        <v-icon v-text="'mdi-square-small'" />
         <v-list-item-text v-text="item" />
       </v-list-item>
     </v-list-group>

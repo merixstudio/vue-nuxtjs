@@ -20,11 +20,11 @@
               contain
               max-height="300"
             />
-            <v-card-title>{{item.name}}</v-card-title>
-            <v-card-subtitle>{{item.tagline}}</v-card-subtitle>
-            <v-card-text>{{item.description}}</v-card-text>
+            <v-card-title v-text="item.name" />
+            <v-card-subtitle v-text="item.tagline" />
+            <v-card-text v-text="item.description" />
 
-            <FoodPairing :food="item.food_pairing"/>
+            <FoodPairing :food="item.food_pairing" />
           </v-card>
         </v-col>
       </v-row>
@@ -40,17 +40,19 @@ import placeholder from '~/static/pint.svg'
 const apiUrl = 'https://api.punkapi.com/v2/beers'
 
 export default {
+  components: {
+    FoodPairing
+  },
+
   data () {
     return {
       isLoaded: false,
       error: null,
-      item: {},
+      item: {
+        food_pairing: []
+      },
       placeholder
     }
-  },
-
-  components: {
-    FoodPairing
   },
 
   mounted () {
