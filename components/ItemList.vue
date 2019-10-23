@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import placeholder from '~/static/pint.svg'
+import placeholder from '~/static/pint.png'
 
 export default {
   props: {

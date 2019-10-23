@@ -13,7 +13,7 @@
           :src="getImageSrc(data)"
           :lazy-src="placeholder"
           contain
-          max-height="300"
+          max-height="400"
         />
         <v-card-title v-text="data.name" />
         <v-card-subtitle v-text="data.tagline" />
@@ -34,7 +34,7 @@
 <script>
 import DetailList from './DetailList'
 
-import placeholder from '~/static/pint.svg'
+import placeholder from '~/static/pint.png'
 
 export default {
   components: {

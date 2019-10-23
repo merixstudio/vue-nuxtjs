@@ -52,7 +52,10 @@ export default {
     } catch (error) {
       this.error = error
     } finally {
-      this.isLoading = false
+      // loading delay to show loader
+      setTimeout(() => {
+        this.isLoading = false
+      }, 1000)
     }
   },
 
