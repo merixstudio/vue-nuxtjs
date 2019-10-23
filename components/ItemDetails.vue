@@ -6,7 +6,8 @@
     <v-col
       cols="12"
       sm="8"
-      md="4"
+      md="6"
+      lg="4"
     >
       <v-card class="elevation-12 p-20">
         <v-img

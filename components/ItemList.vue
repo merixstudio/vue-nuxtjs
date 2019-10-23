@@ -7,8 +7,9 @@
       v-for="item in data"
       :key="item.id"
       cols="12"
-      sm="4"
-      md="3"
+      sm="6"
+      md="4"
+      xl="3"
     >
       <v-card class="p-20">
         <v-img
