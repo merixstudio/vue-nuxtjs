@@ -92,6 +92,6 @@ export default {
 
 <style scoped lang="scss">
   .p-20 {
-    padding: 20px;
+    padding: 20px 0;
   }
 </style>
