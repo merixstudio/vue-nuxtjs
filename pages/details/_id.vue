@@ -11,7 +11,7 @@
         <v-col
           cols="12"
           sm="8"
-          md="4"
+          md="6"
         >
           <v-card v-if="item" class="elevation-12 p-20">
             <v-img
@@ -23,8 +23,14 @@
             <v-card-title v-text="item.name" />
             <v-card-subtitle v-text="item.tagline" />
             <v-card-text v-text="item.description" />
+            <v-card-text><strong>Brewers tips:</strong> {{item.brewers_tips}}</v-card-text>
 
-            <FoodPairing :food="item.food_pairing" />
+            <DetailList :data="item.food_pairing" icon="restaurant">
+              Food Pairing
+            </DetailList>
+            <DetailList :data="item.ingredients" icon="mdi-beer">
+              Ingredients
+            </DetailList>
           </v-card>
         </v-col>
       </v-row>
@@ -34,14 +40,14 @@
 
 <script>
 import axios from 'axios'
-import FoodPairing from '../../components/FoodPairing'
+import DetailList from '../../components/DetailList'
 import placeholder from '~/static/pint.svg'
 
 const apiUrl = 'https://api.punkapi.com/v2/beers'
 
 export default {
   components: {
-    FoodPairing
+    DetailList
   },
 
   data () {
