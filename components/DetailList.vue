@@ -57,7 +57,10 @@ export default {
     },
     data: {
       type: Array,
-      required: true
+      required: true,
+      default: () => {
+        return []
+      }
     }
   }
 }
