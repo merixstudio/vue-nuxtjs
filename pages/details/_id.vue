@@ -15,7 +15,7 @@
         >
           <v-card v-if="item" class="elevation-12 p-20">
             <v-img
-              :src=getImageSrc(item)
+              :src="getImageSrc(item)"
               :lazy-src="placeholder"
               contain
               max-height="300"
@@ -23,7 +23,7 @@
             <v-card-title v-text="item.name" />
             <v-card-subtitle v-text="item.tagline" />
             <v-card-text v-text="item.description" />
-            <v-card-text><strong>Brewers tips:</strong> {{item.brewers_tips}}</v-card-text>
+            <v-card-text><strong>Brewers tips:</strong> {{ item.brewers_tips }}</v-card-text>
 
             <DetailList :data="item.food_pairing" icon="restaurant">
               Food Pairing

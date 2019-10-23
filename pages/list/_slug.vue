@@ -16,7 +16,7 @@
         >
           <v-card class="p-20">
             <v-img
-              :src=getImageSrc(item)
+              :src="getImageSrc(item)"
               :lazy-src="placeholder"
               contain
               max-height="300"
