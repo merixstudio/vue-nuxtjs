@@ -11,9 +11,12 @@
         <v-col
           cols="12"
           sm="8"
-          md="6"
+          md="4"
         >
-          <v-card v-if="item" class="elevation-12 p-20">
+          <template v-if="isLoading">
+            Loading...
+          </template>
+          <v-card v-else class="elevation-12 p-20">
             <v-img
               :src="getImageSrc(item)"
               :lazy-src="placeholder"
@@ -39,11 +42,10 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { mapActions, mapState } from 'vuex'
+
 import DetailList from '../../components/DetailList'
 import placeholder from '~/static/pint.svg'
-
-const apiUrl = 'https://api.punkapi.com/v2/beers'
 
 export default {
   components: {
@@ -52,28 +54,31 @@ export default {
 
   data () {
     return {
-      isLoaded: false,
+      isLoading: true,
       error: null,
-      item: {
-        food_pairing: []
-      },
       placeholder
     }
   },
 
-  mounted () {
-    axios.get(`${apiUrl}/${this.$route.params.id}`)
-      .then((result) => {
-        this.isLoaded = true
-        this.item = result.data[0]
-      })
-      .catch((error) => {
-        this.isLoaded = true
-        this.error = error
-      })
+  computed: mapState([
+    'item'
+  ]),
+
+  async mounted () {
+    this.isLoading = true
+    try {
+      await this.loadItem(this.$route.params.id)
+    } catch (error) {
+      this.error = error
+    } finally {
+      this.isLoading = false
+    }
   },
 
   methods: {
+    ...mapActions([
+      'loadItem'
+    ]),
     getImageSrc: item => item.image_url ? item.image_url : placeholder
   }
 }

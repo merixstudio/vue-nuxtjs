@@ -15,8 +15,9 @@
           v-for="item in data"
           :key="item"
         >
-          <v-icon v-text="'mdi-square-small'" />
-          <v-list-item-text v-text="item" />
+          <p class="mb-0">
+            <v-icon v-text="'mdi-square-small'" />{{ item }}
+          </p>
         </v-list-item>
       </template>
 
@@ -35,9 +36,10 @@
         </template>
 
         <template v-if="Array.isArray(item)">
-          <v-list-item v-for="subitem in item" :key="subitem">
-            <v-icon v-text="'mdi-square-small'" />
-            <v-list-item-text v-text="subitem.name" />
+          <v-list-item v-for="(subitem, index) in item" :key="`${index} ${subitem.name}`">
+            <p class="mb-0">
+              <v-icon v-text="'mdi-square-small'" />{{ subitem.name }}
+            </p>
           </v-list-item>
         </template>
         <template v-else>
@@ -56,7 +58,7 @@ export default {
       default: ''
     },
     data: {
-      type: Array,
+      type: [Array, Object],
       required: true,
       default: () => {
         return []

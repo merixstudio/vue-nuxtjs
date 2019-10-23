@@ -8,7 +8,16 @@
         justify="start"
       >
         <v-col
+          v-if="isLoading"
+          cols="12"
+          sm="4"
+          md="3"
+        >
+          Loading...
+        </v-col>
+        <v-col
           v-for="item in items"
+          v-else
           :key="item.id"
           cols="12"
           sm="4"
@@ -44,35 +53,38 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { mapActions, mapState } from 'vuex'
 import placeholder from '~/static/pint.svg'
-
-const apiUrl = 'https://api.punkapi.com/v2/beers'
 
 export default {
 
   data () {
     return {
-      isLoaded: false,
+      isLoading: false,
       error: null,
-      items: [],
       placeholder
     }
   },
 
-  mounted () {
-    axios.get(`${apiUrl}?food=${this.$route.params.slug}`)
-      .then((result) => {
-        this.isLoaded = true
-        this.items = result.data
-      })
-      .catch((error) => {
-        this.isLoaded = true
-        this.error = error
-      })
+  computed: mapState([
+    'items'
+  ]),
+
+  async mounted () {
+    this.isLoading = true
+    try {
+      await this.loadItems(this.$route.params.slug)
+    } catch (error) {
+      this.error = error
+    } finally {
+      this.isLoading = false
+    }
   },
 
   methods: {
+    ...mapActions([
+      'loadItems'
+    ]),
     getImageSrc: item => item.image_url ? item.image_url : placeholder
   }
 }
