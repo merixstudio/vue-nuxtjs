@@ -37,9 +37,18 @@
 
         <template v-if="Array.isArray(item)">
           <v-list-item v-for="(subitem, index) in item" :key="`${index} ${subitem.name}`">
-            <p class="mb-0">
-              <v-icon v-text="'mdi-square-small'" />{{ subitem.name }}
-            </p>
+            <v-list-item-content>
+              <v-list-item-title v-text="subitem.name" />
+              <v-list-item-subtitle>
+                {{ `${subitem.amount.value} ${subitem.amount.unit}` }}
+              </v-list-item-subtitle>
+              <v-list-item-subtitle v-if="subitem.add">
+                {{ `add: ${subitem.add}` }}
+              </v-list-item-subtitle>
+              <v-list-item-subtitle v-if="subitem.attribute">
+                {{ `attribute: ${subitem.attribute}` }}
+              </v-list-item-subtitle>
+            </v-list-item-content>
           </v-list-item>
         </template>
         <template v-else>

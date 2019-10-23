@@ -4,52 +4,33 @@
       class="fill-height"
       fluid
     >
-      <v-row
-        align="center"
-        justify="center"
-      >
-        <v-col
-          cols="12"
-          sm="8"
-          md="4"
-        >
-          <template v-if="isLoading">
-            Loading...
-          </template>
-          <v-card v-else class="elevation-12 p-20">
-            <v-img
-              :src="getImageSrc(item)"
-              :lazy-src="placeholder"
-              contain
-              max-height="300"
-            />
-            <v-card-title v-text="item.name" />
-            <v-card-subtitle v-text="item.tagline" />
-            <v-card-text v-text="item.description" />
-            <v-card-text><strong>Brewers tips:</strong> {{ item.brewers_tips }}</v-card-text>
-
-            <DetailList :data="item.food_pairing" icon="restaurant">
-              Food Pairing
-            </DetailList>
-            <DetailList :data="item.ingredients" icon="mdi-beer">
-              Ingredients
-            </DetailList>
-          </v-card>
-        </v-col>
-      </v-row>
+      <Loader v-if="isLoading" />
+      <Error v-else-if="error">
+        {{ error }}
+      </Error>
+      <NoResults v-else-if="!item">
+        No results
+      </NoResults>
+      <ItemDetails v-else :data="item" />
     </v-container>
   </v-content>
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import Loader from '../../components/Loader'
+import Error from '../../components/Error'
+import NoResults from '../../components/NoResults'
+import ItemDetails from '../../components/ItemDetails'
 
-import DetailList from '../../components/DetailList'
 import placeholder from '~/static/pint.svg'
 
 export default {
   components: {
-    DetailList
+    ItemDetails,
+    Error,
+    NoResults,
+    Loader
   },
 
   data () {

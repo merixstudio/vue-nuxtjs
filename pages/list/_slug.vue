@@ -1,68 +1,37 @@
 <template>
   <v-content>
-    <v-container
-      class="fill-height"
-    >
-      <v-row
-        align="center"
-        justify="start"
-      >
-        <v-col
-          v-if="isLoading"
-          cols="12"
-          sm="4"
-          md="3"
-        >
-          Loading...
-        </v-col>
-        <v-col
-          v-for="item in items"
-          v-else
-          :key="item.id"
-          cols="12"
-          sm="4"
-          md="3"
-        >
-          <v-card class="p-20">
-            <v-img
-              :src="getImageSrc(item)"
-              :lazy-src="placeholder"
-              contain
-              max-height="300"
-            />
-            <v-card-title>{{ item.name }}</v-card-title>
-            <v-card-subtitle>{{ item.tagline }}</v-card-subtitle>
-            <v-card-text>{{ item.description.length > 100 ? `${item.description.substring(0, 97)}...` : item.description }}</v-card-text>
-            <v-card-actions>
-              <v-spacer />
-              <v-btn
-                nuxt
-                :to="`/details/${item.id}`"
-                text
-                small
-                color="orange"
-              >
-                See details
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-      </v-row>
+    <v-container class="fill-height">
+      <Loader v-if="isLoading" />
+      <Error v-else-if="error">
+        {{ error }}
+      </Error>
+      <NoResults v-else-if="!items.length">
+        No results
+      </NoResults>
+      <ItemList v-else :data="items" />
     </v-container>
   </v-content>
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import placeholder from '~/static/pint.svg'
+import ItemList from '../../components/ItemList'
+import Loader from '../../components/Loader'
+import NoResults from '../../components/NoResults'
+import Error from '../../components/Error'
 
 export default {
+  components: {
+    ItemList,
+    Error,
+    Loader,
+    NoResults
+  },
 
   data () {
     return {
       isLoading: false,
-      error: null,
-      placeholder
+      error: null
     }
   },
 
@@ -84,14 +53,7 @@ export default {
   methods: {
     ...mapActions([
       'loadItems'
-    ]),
-    getImageSrc: item => item.image_url ? item.image_url : placeholder
+    ])
   }
 }
 </script>
-
-<style scoped lang="scss">
-  .p-20 {
-    padding: 20px 0;
-  }
-</style>
