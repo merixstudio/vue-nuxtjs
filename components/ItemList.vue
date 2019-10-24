@@ -4,8 +4,8 @@
     justify="start"
   >
     <v-col
-      v-for="item in data"
-      :key="item.id"
+      v-for="{id, name, tagline, image_url, description} in data"
+      :key="id"
       cols="12"
       sm="6"
       md="4"
@@ -13,19 +13,19 @@
     >
       <v-card class="p-20">
         <v-img
-          :src="getImageSrc(item)"
+          :src="getImageSrc(image_url)"
           :lazy-src="placeholder"
           contain
           max-height="300"
         />
-        <v-card-title>{{ item.name }}</v-card-title>
-        <v-card-subtitle>{{ item.tagline }}</v-card-subtitle>
-        <v-card-text>{{ item.description.length > 100 ? `${item.description.substring(0, 97)}...` : item.description }}</v-card-text>
+        <v-card-title>{{ name }}</v-card-title>
+        <v-card-subtitle>{{ tagline }}</v-card-subtitle>
+        <v-card-text>{{ description.length > 100 ? `${description.substring(0, 97)}...` : description }}</v-card-text>
         <v-card-actions>
           <v-spacer />
           <v-btn
             nuxt
-            :to="`/details/${item.id}`"
+            :to="`/details/${id}`"
             text
             small
             color="orange"
@@ -46,9 +46,7 @@ export default {
     data: {
       type: Array,
       required: true,
-      default: () => {
-        return []
-      }
+      default: () => []
     }
   },
 
@@ -59,7 +57,7 @@ export default {
   },
 
   methods: {
-    getImageSrc: item => item.image_url ? item.image_url : placeholder
+    getImageSrc: imageUrl => imageUrl || placeholder
   }
 }
 </script>

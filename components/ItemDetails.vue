@@ -46,9 +46,7 @@ export default {
     data: {
       type: Object,
       required: true,
-      default: () => {
-        return {}
-      }
+      default: () => {}
     }
   },
 
@@ -59,7 +57,7 @@ export default {
   },
 
   methods: {
-    getImageSrc: item => item.image_url ? item.image_url : placeholder
+    getImageSrc: item => item.image_url || placeholder
   }
 }
 </script>
