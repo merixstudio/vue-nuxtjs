@@ -22,21 +22,23 @@
               <v-toolbar-title>Find beer for Your meal!</v-toolbar-title>
               <v-spacer />
             </v-toolbar>
-            <v-card-text>
-              <v-text-field
-                v-model="search"
-                label="Search | eg. chicken, pasta..."
-                name="search"
-                type="text"
-                color="orange"
-              />
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer />
-              <v-btn nuxt :to="`/list/${search}`" color="orange">
-                Search
-              </v-btn>
-            </v-card-actions>
+            <v-form @submit="handleSearchEvent">
+              <v-card-text>
+                <v-text-field
+                  v-model="search"
+                  label="Search | eg. chicken, pasta..."
+                  name="search"
+                  type="text"
+                  color="orange"
+                />
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer />
+                <v-btn color="orange" @click="handleSearchEvent">
+                  Search
+                </v-btn>
+              </v-card-actions>
+            </v-form>
           </v-card>
         </v-col>
       </v-row>
@@ -51,6 +53,12 @@ export default {
     return {
       search: '',
     };
+  },
+
+  methods: {
+    handleSearchEvent () {
+      this.$router.push(`/list/${this.search}`);
+    },
   },
 };
 </script>

@@ -8,7 +8,7 @@
       <Error v-else-if="error">
         {{ error }}
       </Error>
-      <NoResults v-else-if="!item">
+      <NoResults v-else-if="!item && !isLoading">
         No results
       </NoResults>
       <ItemDetails v-else :data="item" />
