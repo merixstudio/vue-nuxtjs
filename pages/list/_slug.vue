@@ -18,10 +18,10 @@ import {
   mapActions,
   mapState,
 } from 'vuex';
-import ItemList from '../../components/ItemList';
-import Loader from '../../components/Loader';
-import NoResults from '../../components/NoResults';
-import Error from '../../components/Error';
+import ItemList from '@/components/ItemList';
+import Loader from '@/components/Loader';
+import NoResults from '@/components/NoResults';
+import Error from '@/components/Error';
 
 export default {
   components: {

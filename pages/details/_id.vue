@@ -21,10 +21,10 @@ import {
   mapActions,
   mapState,
 } from 'vuex';
-import Loader from '../../components/Loader';
-import Error from '../../components/Error';
-import NoResults from '../../components/NoResults';
-import ItemDetails from '../../components/ItemDetails';
+import Loader from '@/components/Loader';
+import Error from '@/components/Error';
+import NoResults from '@/components/NoResults';
+import ItemDetails from '@/components/ItemDetails';
 
 import placeholder from '~/static/pint.svg';
 
