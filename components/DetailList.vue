@@ -62,17 +62,20 @@
 <script>
 export default {
   props: {
-    icon: {
-      type: String,
-      default: ''
-    },
     data: {
-      type: [Array, Object],
-      required: true,
       default: () => {
-        return []
-      }
-    }
-  }
-}
+        return [];
+      },
+      required: true,
+      type: [
+        Array,
+        Object,
+      ],
+    },
+    icon: {
+      default: '',
+      type: String,
+    },
+  },
+};
 </script>

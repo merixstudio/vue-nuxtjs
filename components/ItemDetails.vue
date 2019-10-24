@@ -33,33 +33,33 @@
 </template>
 
 <script>
-import DetailList from './DetailList'
+import DetailList from './DetailList';
 
-import placeholder from '~/static/pint.png'
+import placeholder from '~/static/pint.png';
 
 export default {
   components: {
-    DetailList
+    DetailList,
   },
 
   props: {
     data: {
       type: Object,
       required: true,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
 
   data () {
     return {
-      placeholder
-    }
+      placeholder,
+    };
   },
 
   methods: {
-    getImageSrc: item => item.image_url || placeholder
-  }
-}
+    getImageSrc: item => item.image_url || placeholder,
+  },
+};
 </script>
 
 <style scoped lang="scss">

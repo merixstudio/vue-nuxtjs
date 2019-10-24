@@ -39,27 +39,25 @@
 </template>
 
 <script>
-import placeholder from '~/static/pint.png'
+import placeholder from '~/static/pint.png';
 
 export default {
   props: {
     data: {
-      type: Array,
+      default: () => [],
       required: true,
-      default: () => []
-    }
+      type: Array,
+    },
   },
-
   data () {
     return {
-      placeholder
-    }
+      placeholder,
+    };
   },
-
   methods: {
-    getImageSrc: imageUrl => imageUrl || placeholder
-  }
-}
+    getImageSrc: imageUrl => imageUrl || placeholder,
+  },
+};
 </script>
 
 <style scoped lang="scss">

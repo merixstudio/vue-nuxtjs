@@ -14,49 +14,49 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
-import ItemList from '../../components/ItemList'
-import Loader from '../../components/Loader'
-import NoResults from '../../components/NoResults'
-import Error from '../../components/Error'
+import {
+  mapActions,
+  mapState,
+} from 'vuex';
+import ItemList from '../../components/ItemList';
+import Loader from '../../components/Loader';
+import NoResults from '../../components/NoResults';
+import Error from '../../components/Error';
 
 export default {
   components: {
-    ItemList,
     Error,
+    ItemList,
     Loader,
-    NoResults
+    NoResults,
   },
 
   data () {
     return {
+      error: null,
       isLoading: false,
-      error: null
-    }
+    };
   },
 
-  computed: mapState([
-    'items'
-  ]),
+  computed: mapState(['items']),
 
   async mounted () {
-    this.isLoading = true
+    this.isLoading = true;
+
     try {
-      await this.loadItems(this.$route.params.slug)
+      await this.loadItems(this.$route.params.slug);
     } catch (error) {
-      this.error = error
+      this.error = error;
     } finally {
       // loading delay to show loader
       setTimeout(() => {
-        this.isLoading = false
-      }, 1000)
+        this.isLoading = false;
+      }, 1000);
     }
   },
 
   methods: {
-    ...mapActions([
-      'loadItems'
-    ])
-  }
-}
+    ...mapActions(['loadItems']),
+  },
+};
 </script>

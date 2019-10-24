@@ -17,55 +17,55 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
-import Loader from '../../components/Loader'
-import Error from '../../components/Error'
-import NoResults from '../../components/NoResults'
-import ItemDetails from '../../components/ItemDetails'
+import {
+  mapActions,
+  mapState,
+} from 'vuex';
+import Loader from '../../components/Loader';
+import Error from '../../components/Error';
+import NoResults from '../../components/NoResults';
+import ItemDetails from '../../components/ItemDetails';
 
-import placeholder from '~/static/pint.svg'
+import placeholder from '~/static/pint.svg';
 
 export default {
   components: {
-    ItemDetails,
     Error,
+    ItemDetails,
+    Loader,
     NoResults,
-    Loader
   },
 
   data () {
     return {
-      isLoading: true,
       error: null,
-      placeholder
-    }
+      isLoading: true,
+      placeholder,
+    };
   },
 
-  computed: mapState([
-    'item'
-  ]),
+  computed: mapState(['item']),
 
   async mounted () {
-    this.isLoading = true
+    this.isLoading = true;
+
     try {
-      await this.loadItem(this.$route.params.id)
+      await this.loadItem(this.$route.params.id);
     } catch (error) {
-      this.error = error
+      this.error = error;
     } finally {
       // loading delay to show loader
       setTimeout(() => {
-        this.isLoading = false
-      }, 1000)
+        this.isLoading = false;
+      }, 1000);
     }
   },
 
   methods: {
-    ...mapActions([
-      'loadItem'
-    ]),
-    getImageSrc: item => item.image_url ? item.image_url : placeholder
-  }
-}
+    ...mapActions(['loadItem']),
+    getImageSrc: item => item.image_url ? item.image_url : placeholder,
+  },
+};
 </script>
 
 <style scoped lang="scss">

@@ -14,27 +14,28 @@
 
 <script>
 export default {
-  layout: 'empty',
   props: {
     error: {
+      default: null,
       type: Object,
-      default: null
-    }
-  },
-  head () {
-    const title =
-      this.error.statusCode === 404 ? this.pageNotFound : this.otherError
-    return {
-      title
-    }
+    },
   },
   data () {
     return {
+      otherError: 'An error occurred',
       pageNotFound: '404 Not Found',
-      otherError: 'An error occurred'
-    }
-  }
-}
+    };
+  },
+  head () {
+    const title =
+    this.error.statusCode === 404 ? this.pageNotFound : this.otherError;
+
+    return {
+      title,
+    };
+  },
+  layout: 'empty',
+};
 </script>
 
 <style scoped>
