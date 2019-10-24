@@ -22,7 +22,7 @@
               <v-toolbar-title>Find beer for Your meal!</v-toolbar-title>
               <v-spacer />
             </v-toolbar>
-            <v-form @submit="handleSearchEvent">
+            <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="handleSearchEvent">
               <v-card-text>
                 <v-text-field
                   v-model="search"
@@ -30,11 +30,14 @@
                   name="search"
                   type="text"
                   color="orange"
+                  required
+                  autofocus
+                  :rules="searchRules"
                 />
               </v-card-text>
               <v-card-actions>
                 <v-spacer />
-                <v-btn color="orange" @click="handleSearchEvent">
+                <v-btn color="orange" type="submit">
                   Search
                 </v-btn>
               </v-card-actions>
@@ -47,17 +50,20 @@
 </template>
 
 <script>
-
 export default {
   data () {
     return {
       search: '',
+      valid: true,
+      searchRules: [v => !!v || 'Search is required'],
     };
   },
 
   methods: {
     handleSearchEvent () {
-      this.$router.push(`/list/${this.search}`);
+      if (this.$refs.form.validate()) {
+        this.$router.push(`/list/${this.search}`);
+      }
     },
   },
 };
